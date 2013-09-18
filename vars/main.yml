@@ -1,0 +1,5 @@
+---
+monit_config_dir: /etc/monit
+monit_config_custom_dir: $monit_config_dir/conf.d
+monit_command: /usr/bin/monit -c $monit_config_dir/monitrc
+monit_http_port: 2812

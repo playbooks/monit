@@ -1,0 +1,8 @@
+---
+- name: enable monit's embedded web server
+  template: src=$home/monit/templates/enable_http_server.monit.j2 
+            dest=$monit_config_custom_dir/enable_http_server.monit
+            owner=root group=root mode=0600
+  sudo: true
+  notify:
+    - monit_reload

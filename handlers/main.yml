@@ -1,0 +1,17 @@
+---
+- name: monit_restart
+  service: name=monit state=restarted
+  sudo: true
+
+# reload monit so it picks up updated monit files
+#
+- name: monit_reload
+  command: $monit_command reload
+  sudo: true
+  notify:
+    - monit_wait_for_http_server
+
+# wait for monit's web server to start
+#
+- name: monit_wait_for_http_server
+  wait_for: host=127.0.0.1 port=$monit_http_port state=started delay=3

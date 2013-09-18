@@ -1,0 +1,13 @@
+---
+-
+  hosts: all
+
+  vars_files:
+  - $home/monit/vars/main.yml
+
+  tasks:
+  - include: $home/monit/tasks/install.yml
+  - include: $home/monit/tasks/enable_http_server.yml
+
+  handlers:
+  - include: $home/monit/handlers/main.yml

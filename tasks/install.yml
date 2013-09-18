@@ -1,0 +1,13 @@
+---
+- name: install monit via apt-get
+  apt: pkg=monit state=installed install_recommends=no
+  sudo: true
+
+- name: set the monit service check interval
+  lineinfile: dest=/etc/monit/monitrc
+              state=present create=no regexp='^.+set daemon.+$'
+              line='set daemon 30'
+  sudo: true
+  notify:
+    - monit_restart
+  
